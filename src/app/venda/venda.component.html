@@ -1,0 +1,61 @@
+<h2 class="text-center">Venda</h2>
+
+<div class="container">
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label>Cliente</label>
+      <input class="form-control" auto-complete [source]="sourceCliente" display-property-name="nome"
+             list-formatter="nome" [(ngModel)]="venda.cliente">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label>Produto</label>
+      <input class="form-control" auto-complete [source]="sourceProduto" display-property-name="nome"
+             list-formatter="nome" [(ngModel)]="venda.produto">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Quantidade</label>
+      <input type="number" class="form-control" [(ngModel)]="venda.quantidadeVenda">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <button (click)="save()" type="submit" class="btn btn-primary">Salvar <i class="glyphicon glyphicon-check"></i>
+      </button>
+    </div>
+
+    <table class="table table-condensed table-hover">
+      <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor total</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngIf="!listVenda.length">
+        <td align="center" colspan="5">Nenhum item adicionado na venda</td>
+      </tr>
+
+      <tr *ngFor="let v of listVenda">
+        <td>{{v.cliente.nome}}</td>
+        <td>{{v.produto.nome}}</td>
+        <td>{{v.quantidadeVenda}}</td>
+        <td>{{v.getValorProduto() | currency:'BRL':2}}</td>
+        <td (click)="remove(v)" align="right"><a><i class="glyphicon glyphicon-trash"></i></a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

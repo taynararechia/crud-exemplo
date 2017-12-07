@@ -1,0 +1,22 @@
+.formulario {
+  padding: 5px 14px;
+}
+
+.nav-pills {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid;
+  border-color: #2392C9;
+}
+
+h2 {
+  color: #2392C9;
+}
+
+.glyphicon-home {
+  margin-top: 10px;
+}
+
+.glyphicon-trash {
+ color: rgba(170, 0, 0, 0.79);
+}

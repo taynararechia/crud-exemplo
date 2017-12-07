@@ -1,0 +1,51 @@
+<h2 class="text-center">Cadastro de Produto</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label>Nome</label>
+      <input type="text" class="form-control" maxlength="50" required="true" [(ngModel)]="produto.nome">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Quantidade</label>
+      <input type="numer" class="form-control" maxlength="3" [(ngModel)]="produto.quantidadeProduto">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Valor de Venda</label>
+      <input type="number" class="form-control" placeholder="R$" [(ngModel)]="produto.valor">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary" (click)="save()">Salvar <i class="glyphicon glyphicon-check"></i></button>
+    </div>
+  </div>
+
+  <table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor de Venda</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngIf="!listProdutos.length">
+      <td align="center" colspan="4">Nenhum produto adicionado</td>
+    </tr>
+
+    <tr *ngFor="let p of listProdutos">
+      <td>{{p.nome}}</td>
+      <td>{{p.quantidadeProduto}}</td>
+      <td>{{p.valor | currency:'BRL': 2}}</td>
+      <td (click)="remove(p)" align="right"><a><i class="glyphicon glyphicon-trash"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

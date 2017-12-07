@@ -1,0 +1,116 @@
+<h2 class="text-center">Cadastro de cliente</h2>
+
+<div class="container">
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputName">Nome completo</label>
+      <input type="text" name="inputName" id="inputName" [(ngModel)]="cliente.nome" class="form-control">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail">E-mail</label>
+      <input type="text" name="inputEmail" id="inputEmail" [(ngModel)]="cliente.email" placeholder="client@email.com.br"
+             class="form-control">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label for="inputDate">Data de nascimento</label>
+      <input type="date" name="inputDate" id="inputDate" [(ngModel)]="cliente.dataNascimento" class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label>Sexo</label>
+      <div class="row">
+        <div class="col-md-12">
+          <input type="radio" name="sexo" id="masculino" value="M" [(ngModel)]="cliente.sexo">
+          <label for="masculino">Masculino</label>
+          <input type="radio" name="sexo" id="feminino" value="F" [(ngModel)]="cliente.sexo">
+          <label for="feminino">Feminino</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputTel">Telefone</label>
+      <input type="tel" id="inputTel" [(ngModel)]="cliente.telefone" placeholder="(99)9999-9999" class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputCity">Cidade</label>
+      <input type="text" name="inputCity" id="inputCity" [(ngModel)]="cliente.cidade" class="form-control">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label for="inputEstado">Estado</label>
+      <select class="selectpicker form-control" id="inputEstado" [(ngModel)]="cliente.estado">
+        <option value="AC">Acre</option>
+        <option value="AL">Alagoas</option>
+        <option value="AP">Amapá</option>
+        <option value="AM">Amazonas</option>
+        <option value="BA">Bahia</option>
+        <option value="CE">Ceará</option>
+        <option value="DF">Distrito Federal</option>
+        <option value="ES">Espírito Santo</option>
+        <option value="GO">Goiás</option>
+        <option value="MA">Maranhão</option>
+        <option value="MT">Mato Grosso</option>
+        <option value="MS">Mato Grosso do Sul</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="PA">Pará</option>
+        <option value="PB">Paraíba</option>
+        <option value="PR">Paraná</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PI">Piauí</option>
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="RN">Rio Grande do Norte</option>
+        <option value="RS">Rio Grande do Sul</option>
+        <option value="RO">Rondônia</option>
+        <option value="RR">Roraima</option>
+        <option value="SC">Santa Catarina</option>
+        <option value="SP">São Paulo</option>
+        <option value="SE">Sergipe</option>
+        <option value="TO">Tocantins</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" (click)="save()"><i class="glyphicon glyphicon-check"></i> Salvar</button>
+    </div>
+  </div>
+
+  <table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Data de nascimento</th>
+      <th>Sexo</th>
+      <th>Telefone</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngIf="!listClientes.length">
+      <td align="center" colspan="8">Nenhum cliente adicionado</td>
+    </tr>
+
+    <tr *ngFor="let c of listClientes">
+      <td>{{c.nome}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+      <td>{{retornaSexoCliente(c.sexo)}}</td>
+      <td>{{c.telefone}}</td>
+      <td>{{c.cidade}}</td>
+      <td>{{c.estado}}</td>
+      <td align="right"><a (click)="remove(c)"><i class="glyphicon glyphicon-trash"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
